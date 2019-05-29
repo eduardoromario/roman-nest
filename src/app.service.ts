@@ -1,32 +1,33 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class AppService {
+export class RomanService {
+  
+  convertTable = {
+    1000: "M",
+    900: "CM",
+    500: "D",
+    400: "CD",
+    100: "C",
+    90: "XC",
+    50: "L",
+    40: "XL",
+    10: "X",
+    9: "IX",
+    5: "V",
+    4: "IV",
+    1: "I"
+  };
+
   convertToRoman(toConvert :number): string{
     let numberRoman: string = ""; 
 
-    const convertTable = {
-      1000: "M",
-      900: "CM",
-      500: "D",
-      400: "CD",
-      100: "C",
-      90: "XC",
-      50: "L",
-      40: "XL",
-      10: "X",
-      9: "IX",
-      5: "V",
-      4: "IV",
-      1: "I"
-    };
+    const values = Object.keys(this.convertTable).reverse();
 
-    const keys = Object.keys(convertTable).reverse();
-
-    keys.forEach(key => {
-      while (toConvert >= parseInt(key)) {
-        toConvert -= parseInt(key)
-        numberRoman += convertTable[key]
+    values.forEach(value => {
+      while (toConvert >= parseInt(value)) {
+        toConvert -= parseInt(value)
+        numberRoman += this.convertTable[value]
       }
     });
     return numberRoman;

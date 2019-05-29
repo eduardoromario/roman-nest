@@ -1,34 +1,34 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { RomanController } from './app.controller';
+import { RomanService } from './app.service';
 
-describe('AppController', () => {
-  let appController: AppController;
+describe('RomanController', () => {
+  let romanController: RomanController;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      controllers: [AppController],
-      providers: [AppService],
+      controllers: [RomanController],
+      providers: [RomanService],
     }).compile();
 
-    appController = app.get<AppController>(AppController);
+    romanController = app.get<RomanController>(RomanController);
   });
 
   describe('numbers conversion', () => {
     it('should return "I"', () => {
-      expect(appController.convertNumber(10)).toBe('X');
+      expect(romanController.convertNumber(10)).toBe('X');
     });
     it('should return "DIII"', () => {
-      expect(appController.convertNumber(503)).toBe('DIII');
+      expect(romanController.convertNumber(503)).toBe('DIII');
     });
     it('should return "MMXIX"', () => {
-      expect(appController.convertNumber(2019)).toBe('MMXIX');
+      expect(romanController.convertNumber(2019)).toBe('MMXIX');
     });
   });
 
   describe('not a number', () => {
     it('should return empty', () => {
-      expect(appController.convertNumber('aaaa')).toBe('');
+      expect(romanController.convertNumber('aaaa')).toBe('');
     });
   });
 });
